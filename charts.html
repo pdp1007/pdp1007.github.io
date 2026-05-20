@@ -340,7 +340,7 @@
       ],
     },
     options: { ...lineOpts('Distinct Users (log)'), scales: {
-      y: { type: 'logarithmic', title: { display: true, text: 'Distinct Users (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toString())[...]
+      y: { type: 'logarithmic', title: { display: true, text: 'Distinct Users (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toLocaleString()) } },
       x: { grid: { color: 'rgba(255,255,255,0.05)' } },
     } },
   });
@@ -355,7 +355,7 @@
       ],
     },
     options: { ...lineOpts('Distinct Tenants (log)'), scales: {
-      y: { type: 'logarithmic', title: { display: true, text: 'Distinct Tenants (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toString()[...]
+      y: { type: 'logarithmic', title: { display: true, text: 'Distinct Tenants (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toLocaleString()) } },
       x: { grid: { color: 'rgba(255,255,255,0.05)' } },
     } },
   });
