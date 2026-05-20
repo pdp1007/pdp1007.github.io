@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Projects & Experiments</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --bg-2: #121933;
+    --card: #161e3d;
+    --text: #e8ecf8;
+    --muted: #9aa6c7;
+    --accent: #5b8cff;
+    --accent-2: #7df2c9;
+    --border: rgba(255,255,255,0.08);
+    --shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: radial-gradient(1200px 600px at 10% -10%, #1c2860 0%, var(--bg) 50%) fixed;
+    color: var(--text);
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 64px 24px; }
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  header h1 {
+    font-size: 48px; font-weight: 700; margin: 0 0 16px;
+    background: linear-gradient(135deg, #7df2c9, #5b8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  header .subtitle {
+    color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .project-card {
+    background: linear-gradient(180deg, var(--card) 0%, #1c2548 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 32px rgba(91, 140, 255, 0.2);
+    transform: translateY(-4px);
+  }
+  .project-card .icon {
+    font-size: 32px; margin-bottom: 12px;
+  }
+  .project-card h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: var(--accent-2);
+  }
+  .project-card p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 14px;
+    flex-grow: 1;
+  }
+  .project-card .arrow {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Projects & Experiments</h1>
+    <p class="subtitle">A collection of vibe-coded projects and data visualizations</p>
+  </header>
+
+  <div class="projects-grid">
+    <a href="./charts.html" class="project-card">
+      <div class="icon">📊</div>
+      <h3>Impact Scorecard</h3>
+      <p>Native Edge Integration analysis tracking the transition from browser extension to native integration, comparing adoption metrics and user engagement across five weeks.</p>
+      <div class="arrow">View Scorecard →</div>
+    </a>
+  </div>
+
+  <footer>
+    Made with care · pdp1007.github.io
+  </footer>
+</div>
+</body>
+</html>
