@@ -313,6 +313,25 @@
     accent: '#5b8cff',
   };
 
+  // Defensive formatters — Chart.js sometimes passes non-numeric tick values
+  // (especially on log scales). Return '' for those so we never render NaN.
+  const formatLinear = (v) => {
+    const n = typeof v === 'number' ? v : Number(v);
+    if (!isFinite(n)) return '';
+    const abs = Math.abs(n);
+    if (abs >= 1_000_000) return (n / 1_000_000).toLocaleString(undefined, { maximumFractionDigits: 1 }) + 'M';
+    if (abs >= 1_000)     return (n / 1_000).toLocaleString(undefined, { maximumFractionDigits: 1 }) + 'k';
+    return n.toLocaleString();
+  };
+  const formatLog = (v) => {
+    const n = typeof v === 'number' ? v : Number(v);
+    if (!isFinite(n) || n <= 0) return '';
+    const log = Math.log10(n);
+    // Only label major ticks (powers of 10) to keep the axis clean.
+    if (Math.abs(log - Math.round(log)) > 0.001) return '';
+    return formatLinear(n);
+  };
+
   const lineOpts = (yTitle) => ({
     responsive: true, maintainAspectRatio: false,
     plugins: {
@@ -323,7 +342,7 @@
     scales: {
       y: {
         title: { display: true, text: yTitle, color: '#9aa6c7' },
-        ticks: { callback: v => v >= 1000 ? (v/1000).toLocaleString() + 'k' : v },
+        ticks: { callback: formatLinear },
         grid: { color: 'rgba(255,255,255,0.05)' },
       },
       x: { grid: { color: 'rgba(255,255,255,0.05)' } },
@@ -341,6 +360,7 @@
     },
     options: { ...lineOpts('Distinct Users (log)'), scales: {
       y: { type: 'logarithmic', title: { display: true, text: 'Distinct Users (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toLocaleString()) } },
+  y: { type: 'logarithmic', title: { display: true, text: 'Distinct Users (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toLocaleString()) } },
       x: { grid: { color: 'rgba(255,255,255,0.05)' } },
     } },
   });
@@ -356,6 +376,7 @@
     },
     options: { ...lineOpts('Distinct Tenants (log)'), scales: {
       y: { type: 'logarithmic', title: { display: true, text: 'Distinct Tenants (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toLocaleString()) } },
+  y: { type: 'logarithmic', title: { display: true, text: 'Distinct Tenants (log scale)', color: '#9aa6c7' }, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => Number(v.toLocaleString()) } },
       x: { grid: { color: 'rgba(255,255,255,0.05)' } },
     } },
   });
